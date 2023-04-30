@@ -1,0 +1,191 @@
+SQL> create table stocks(
+  2  stock_symbol varchar2(10) primary key,
+  3  stock_name varchar2(20) not null,
+  4  market_capitalization decimal(10,2) not null,
+  5  price_earnings_ratio decimal(10,2) not null);
+
+
+SQL> desc stocks
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ STOCK_NAME                                NOT NULL VARCHAR2(20)
+ MARKET_CAPITALIZATION                     NOT NULL NUMBER(10,2)
+ PRICE_EARNINGS_RATIO                      NOT NULL NUMBER(10,2)
+
+SQL> create table Prediction(
+  2  foreign key(stock_symbol) references stocks,
+  3  day date not null,
+  4  predicted_price decimal(10,2) not null);
+foreign key(stock_symbol) references stocks,
+            *
+ERROR at line 2:
+ORA-00904: "STOCK_SYMBOL": invalid identifier 
+
+
+SQL> create table Prediction(
+  2  stock_symbol foreign key (stock_symbol) references stocks,
+  3  day date not null,
+  4  predicted_price decimal(10,2) not null);
+stock_symbol foreign key (stock_symbol) references stocks,
+                     *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table Prediction(
+  2  stoct_symbol varchar2(10) not null,
+  3  day date not null,
+  4  predicted_price decimal(10,2) not null);
+
+Table created.
+
+SQL> desc prediction
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCT_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> delete from prediction
+  2  ;
+
+0 rows deleted.
+
+SQL> desc prediction
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCT_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> truncate table prediction;
+
+Table truncated.
+
+SQL> desc prediction
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCT_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> alter table prediction
+  2  rename column stoct_symbol to stock_symbol;
+
+Table altered.
+
+SQL> desc prediction
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> alter table prediction
+  2  add constraint stock_symbol foreign key(stock_symbol) references stocks;
+
+Table altered.
+
+SQL> desc prediction
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> create table historical_data(
+  2  stock_symbol varchar2(10) not null,
+  3  day date not null,
+  4  opening price decimal(10,2) not null,
+  5  closing price decimal(10,2) not null);
+opening price decimal(10,2) not null,
+              *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table historical_data(
+  2  stock_symbol varchar2(10) not null,
+  3  day date not null,
+  4  opening_price decimal(10,2) not null,
+  5  closing_price decimal(10,2) not null);
+
+Table created.
+
+SQL> desc historical_data
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ OPENING_PRICE                             NOT NULL NUMBER(10,2)
+ CLOSING_PRICE                             NOT NULL NUMBER(10,2)
+
+SQL> create table user_account(
+  2  username varchar2(20) primary key,
+  3  password varchar2(20) not null,
+  4  phone_number number(20) not null);
+
+Table created.
+
+SQL> alter table historical_data
+  2   add constraint stock_symbol foreign key(stock_symbol) references stocks;
+ add constraint stock_symbol foreign key(stock_symbol) references stocks
+                *
+ERROR at line 2:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> alter table historical_data
+  2   add constraint fk2_stock_symbol foreign key(stock_symbol) references stocks;
+
+Table altered.
+
+SQL> create table watchlist(
+  2  stock_symbol varchar2(10) not null,
+  3  user_id varchar2(20) not null);
+
+Table created.
+
+SQL> alter table watchlist
+  2   add constraint fk3_stock_symbol foreign key(stock_symbol) references stocks;
+
+Table altered.
+
+SQL> desc stocks
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ STOCK_NAME                                NOT NULL VARCHAR2(20)
+ MARKET_CAPITALIZATION                     NOT NULL NUMBER(10,2)
+ PRICE_EARNINGS_RATIO                      NOT NULL NUMBER(10,2)
+
+SQL> desc prediction
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> desc historical_data
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ OPENING_PRICE                             NOT NULL NUMBER(10,2)
+ CLOSING_PRICE                             NOT NULL NUMBER(10,2)
+
+SQL> desc user_account
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERNAME                                  NOT NULL VARCHAR2(20)
+ PASSWORD                                  NOT NULL VARCHAR2(20)
+ PHONE_NUMBER                              NOT NULL NUMBER(20)
+
+SQL> desc watchlist
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ USER_ID                                   NOT NULL VARCHAR2(20)
+
+SQL> spool off

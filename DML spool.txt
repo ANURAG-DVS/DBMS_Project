@@ -1,0 +1,459 @@
+
+SQL> desc stocks
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ STOCK_NAME                                NOT NULL VARCHAR2(20)
+ MARKET_CAPITALIZATION                     NOT NULL NUMBER(10,2)
+ PRICE_EARNINGS_RATIO                      NOT NULL NUMBER(10,2)
+
+SQL> select *from stocks
+  2  ;
+
+no rows selected
+
+SQL> insert into stocks(&stock_symbol,&stock-name,&market-capitalization,&price_earnings_ratio)
+  2  ;
+Enter value for stock_symbol: REL
+Enter value for stock: RELIANCE
+Enter value for market: 1637671
+Enter value for price_earnings_ratio: 24.55
+old   1: insert into stocks(&stock_symbol,&stock-name,&market-capitalization,&price_earnings_ratio)
+new   1: insert into stocks(REL,RELIANCE-name,1637671-capitalization,24.55)
+insert into stocks(REL,RELIANCE-name,1637671-capitalization,24.55)
+                               *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> insert into stocks(&stock_symbol,&stock_name,&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: REL
+Enter value for stock_name: RELIANCE
+Enter value for market_capitalization: 1637671
+Enter value for price_earnings_ratio: 24.55
+old   1: insert into stocks(&stock_symbol,&stock_name,&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks(REL,RELIANCE,1637671,24.55)
+insert into stocks(REL,RELIANCE,1637671,24.55)
+                                *
+ERROR at line 1:
+ORA-01747: invalid user.table.column, table.column, or column specification 
+
+
+SQL> insert into stocks(&stock_symbol,&stock_name,&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: REL
+Enter value for stock_name: RELIANCE
+Enter value for market_capitalization: 1637671.20
+Enter value for price_earnings_ratio: 24.55
+old   1: insert into stocks(&stock_symbol,&stock_name,&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks(REL,RELIANCE,1637671.20,24.55)
+insert into stocks(REL,RELIANCE,1637671.20,24.55)
+                                *
+ERROR at line 1:
+ORA-01747: invalid user.table.column, table.column, or column specification 
+
+
+
+
+SQL> insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: REL
+Enter value for stock_name: RELIANCE
+Enter value for market_capitalization: 163761.20
+Enter value for price_earnings_ratio: 24.55
+old   1: insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks values ('REL','RELIANCE',163761.20,24.55)
+
+1 row created.
+
+SQL> insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: HDFC
+Enter value for stock_name: HOUSING DEVELOPMENT FINANCE CORPORATION
+Enter value for market_capitalization: 941637
+Enter value for price_earnings_ratio: 20.47
+old   1: insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks values ('HDFC','HOUSING DEVELOPMENT FINANCE CORPORATION',941637,20.47)
+insert into stocks values ('HDFC','HOUSING DEVELOPMENT FINANCE CORPORATION',941637,20.47)
+                                  *
+ERROR at line 1:
+ORA-12899: value too large for column "ANURAG_DVS"."STOCKS"."STOCK_NAME" 
+(actual: 39, maximum: 20) 
+
+
+SQL> insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: HDFC
+Enter value for stock_name: HDFC Ltd.
+Enter value for market_capitalization: 941637
+Enter value for price_earnings_ratio: 20.47
+old   1: insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks values ('HDFC','HDFC Ltd.',941637,20.47)
+
+1 row created.
+
+SQL> insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: HUL
+Enter value for stock_name: HINDUSTAN UNILEVER 
+Enter value for market_capitalization: 577365
+Enter value for price_earnings_ratio: 58.77
+old   1: insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks values ('HUL','HINDUSTAN UNILEVER ',577365,58.77)
+
+1 row created.
+
+SQL> insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: LT
+Enter value for stock_name: LARSEN & TOUBRO
+Enter value for market_capitalization: 332312
+Enter value for price_earnings_ratio: 32.89
+old   1: insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks values ('LT','LARSEN & TOUBRO',332312,32.89)
+
+1 row created.
+
+SQL> insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio);
+Enter value for stock_symbol: INFY
+Enter value for stock_name: INFOSIS
+Enter value for market_capitalization: 519710
+Enter value for price_earnings_ratio: 21.57
+old   1: insert into stocks values ('&stock_symbol','&stock_name',&market_capitalization,&price_earnings_ratio)
+new   1: insert into stocks values ('INFY','INFOSIS',519710,21.57)
+
+1 row created.
+
+SQL> SELECT *FROM STOCKS
+  2  ;
+
+STOCK_SYMB STOCK_NAME           MARKET_CAPITALIZATION PRICE_EARNINGS_RATIO      
+---------- -------------------- --------------------- --------------------      
+REL        RELIANCE                          163761.2                24.55      
+HDFC       HDFC Ltd.                           941637                20.47      
+HUL        HINDUSTAN UNILEVER                  577365                58.77      
+LT         LARSEN & TOUBRO                     332312                32.89      
+INFY       INFOSIS                             519710                21.57      
+
+SQL> DESC PREDICTION
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_SYMBOL                              NOT NULL VARCHAR2(10)
+ DAY                                       NOT NULL DATE
+ PREDICTED_PRICE                           NOT NULL NUMBER(10,2)
+
+SQL> SELECT *FROM PREDICTION
+  2  ;
+
+no rows selected
+
+SQL> insert into prediction values ('&stock_symbol','&day','&predicted_price');
+Enter value for stock_symbol: REL
+Enter value for day: 01-MAY-2023
+Enter value for predicted_price: 2450.50
+old   1: insert into prediction values ('&stock_symbol','&day','&predicted_price')
+new   1: insert into prediction values ('REL','01-MAY-2023','2450.50')
+
+1 row created.
+
+SQL> insert into prediction values ('&stock_symbol','&day','&predicted_price');
+Enter value for stock_symbol: HDFC
+Enter value for day: 01-MAY-2023
+Enter value for predicted_price: 1670.60
+old   1: insert into prediction values ('&stock_symbol','&day','&predicted_price')
+new   1: insert into prediction values ('HDFC','01-MAY-2023','1670.60')
+
+1 row created.
+
+SQL> insert into prediction values ('&stock_symbol','&day','&predicted_price');
+Enter value for stock_symbol: HUL
+Enter value for day: 01-MAY-2023
+Enter value for predicted_price: 2350
+old   1: insert into prediction values ('&stock_symbol','&day','&predicted_price')
+new   1: insert into prediction values ('HUL','01-MAY-2023','2350')
+
+1 row created.
+
+SQL> insert into prediction values ('&stock_symbol','&day','&predicted_price');
+Enter value for stock_symbol: LT
+Enter value for day: 01-MAY-2023
+Enter value for predicted_price: 2380.40
+old   1: insert into prediction values ('&stock_symbol','&day','&predicted_price')
+new   1: insert into prediction values ('LT','01-MAY-2023','2380.40')
+
+1 row created.
+
+SQL> insert into prediction values ('&stock_symbol','&day','&predicted_price');
+Enter value for stock_symbol: INFY
+Enter value for day: 01-MAY-2023
+Enter value for predicted_price: 1260.75
+old   1: insert into prediction values ('&stock_symbol','&day','&predicted_price')
+new   1: insert into prediction values ('INFY','01-MAY-2023','1260.75')
+
+1 row created.
+
+SQL> SELECT *FROM PREDICTION
+  2  ;
+
+STOCK_SYMB DAY       PREDICTED_PRICE                                            
+---------- --------- ---------------                                            
+REL        01-MAY-23          2450.5                                            
+HDFC       01-MAY-23          1670.6                                            
+HUL        01-MAY-23            2350                                            
+LT         01-MAY-23          2380.4                                            
+INFY       01-MAY-23         1260.75                                            
+
+SQL> insert into historical-data values ('&stock_symbol','&day','&opening_price','closing_price');
+Enter value for stock_symbol: REL
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 1244.95
+old   1: insert into historical-data values ('&stock_symbol','&day','&opening_price','closing_price')
+new   1: insert into historical-data values ('REL','28-APR-2023','1244.95','closing_price')
+insert into historical-data values ('REL','28-APR-2023','1244.95','closing_price')
+                      *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> insert into historical-data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: REL
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 1244.95
+Enter value for closing_price: 1259.00
+old   1: insert into historical-data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical-data values ('REL','28-APR-2023','1244.95','1259.00')
+insert into historical-data values ('REL','28-APR-2023','1244.95','1259.00')
+                      *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> insert into historical-data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: INFY 
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 2381.75
+Enter value for closing_price: 2423.90
+old   1: insert into historical-data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical-data values ('INFY ','28-APR-2023','2381.75','2423.90')
+insert into historical-data values ('INFY ','28-APR-2023','2381.75','2423.90')
+                      *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> insert into historical-data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: HDFC
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 1670
+Enter value for closing_price: 1691
+old   1: insert into historical-data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical-data values ('HDFC','28-APR-2023','1670','1691')
+insert into historical-data values ('HDFC','28-APR-2023','1670','1691')
+                      *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword 
+
+
+SQL> insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: REL
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 2381.75
+Enter value for closing_price: 2423.90
+old   1: insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical_data values ('REL','28-APR-2023','2381.75','2423.90')
+
+1 row created.
+
+SQL> insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: HDFC
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 1670
+Enter value for closing_price: 1691
+old   1: insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical_data values ('HDFC','28-APR-2023','1670','1691')
+
+1 row created.
+
+SQL> insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: HUL
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 2419
+Enter value for closing_price: 2467.80
+old   1: insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical_data values ('HUL','28-APR-2023','2419','2467.80')
+
+1 row created.
+
+SQL> insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: LT
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 2312.30
+Enter value for closing_price: 2369
+old   1: insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical_data values ('LT','28-APR-2023','2312.30','2369')
+
+1 row created.
+
+SQL> insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price');
+Enter value for stock_symbol: INFY
+Enter value for day: 28-APR-2023
+Enter value for opening_price: 1244.95
+Enter value for closing_price: 1259
+old   1: insert into historical_data values ('&stock_symbol','&day','&opening_price','&closing_price')
+new   1: insert into historical_data values ('INFY','28-APR-2023','1244.95','1259')
+
+1 row created.
+
+SQL> SELECT * FROM HISTORICAL_DATA
+  2  ;
+
+STOCK_SYMB DAY       OPENING_PRICE CLOSING_PRICE                                
+---------- --------- ------------- -------------                                
+REL        28-APR-23       2381.75        2423.9                                
+HDFC       28-APR-23          1670          1691                                
+HUL        28-APR-23          2419        2467.8                                
+LT         28-APR-23        2312.3          2369                                
+INFY       28-APR-23       1244.95          1259                                
+
+SQL> insert into user_account values ('&username','&password',&phone_number);
+Enter value for username: Anurag
+Enter value for password: trader1
+Enter value for phone_number: 8919552106
+old   1: insert into user_account values ('&username','&password',&phone_number)
+new   1: insert into user_account values ('Anurag','trader1',8919552106)
+
+1 row created.
+
+SQL> insert into user_account values ('&username','&password',&phone_number);
+Enter value for username: prudhvi
+Enter value for password: trader2
+Enter value for phone_number: 6309825346
+old   1: insert into user_account values ('&username','&password',&phone_number)
+new   1: insert into user_account values ('prudhvi','trader2',6309825346)
+
+1 row created.
+
+SQL> insert into user_account values ('&username','&password',&phone_number);
+Enter value for username: anish
+Enter value for password: trader3
+Enter value for phone_number: 6303749658
+old   1: insert into user_account values ('&username','&password',&phone_number)
+new   1: insert into user_account values ('anish','trader3',6303749658)
+
+1 row created.
+
+SQL> insert into user_account values ('&username','&password',&phone_number);
+Enter value for username: shruthi
+Enter value for password: trader4
+Enter value for phone_number: 9876598328
+old   1: insert into user_account values ('&username','&password',&phone_number)
+new   1: insert into user_account values ('shruthi','trader4',9876598328)
+
+1 row created.
+
+SQL> insert into user_account values ('&username','&password',&phone_number);
+Enter value for username: shriya
+Enter value for password: trader5
+Enter value for phone_number: 9875668768
+old   1: insert into user_account values ('&username','&password',&phone_number)
+new   1: insert into user_account values ('shriya','trader5',9875668768)
+
+1 row created.
+
+SQL> select * from user_account
+  2  ;
+
+USERNAME             PASSWORD             PHONE_NUMBER                          
+-------------------- -------------------- ------------                          
+Anurag               trader1                8919552106                          
+prudhvi              trader2                6309825346                          
+anish                trader3                6303749658                          
+shruthi              trader4                9876598328                          
+shriya               trader5                9875668768                          
+
+SQL> insert into watchlist values ('&stock_symbol','&user_id');
+Enter value for stock_symbol: REL
+Enter value for user_id: Anurag
+old   1: insert into watchlist values ('&stock_symbol','&user_id')
+new   1: insert into watchlist values ('REL','Anurag')
+
+1 row created.
+
+SQL> insert into watchlist values ('&stock_symbol','&user_id');
+Enter value for stock_symbol: HDFC
+Enter value for user_id: Anurag
+old   1: insert into watchlist values ('&stock_symbol','&user_id')
+new   1: insert into watchlist values ('HDFC','Anurag')
+
+1 row created.
+
+SQL> insert into watchlist values ('&stock_symbol','&user_id');
+Enter value for stock_symbol: HUL
+Enter value for user_id: Anurag
+old   1: insert into watchlist values ('&stock_symbol','&user_id')
+new   1: insert into watchlist values ('HUL','Anurag')
+
+1 row created.
+
+SQL> insert into watchlist values ('&stock_symbol','&user_id');
+Enter value for stock_symbol: LT
+Enter value for user_id: Anish
+old   1: insert into watchlist values ('&stock_symbol','&user_id')
+new   1: insert into watchlist values ('LT','Anish')
+
+1 row created.
+
+SQL> insert into watchlist values ('&stock_symbol','&user_id');
+Enter value for stock_symbol: INFY
+Enter value for user_id: Anish
+old   1: insert into watchlist values ('&stock_symbol','&user_id')
+new   1: insert into watchlist values ('INFY','Anish')
+
+1 row created.
+
+SQL> select * from stocks
+  2  ;
+
+STOCK_SYMB STOCK_NAME           MARKET_CAPITALIZATION PRICE_EARNINGS_RATIO      
+---------- -------------------- --------------------- --------------------      
+REL        RELIANCE                          163761.2                24.55      
+HDFC       HDFC Ltd.                           941637                20.47      
+HUL        HINDUSTAN UNILEVER                  577365                58.77      
+LT         LARSEN & TOUBRO                     332312                32.89      
+INFY       INFOSIS                             519710                21.57      
+
+SQL> select * from prediction;
+
+STOCK_SYMB DAY       PREDICTED_PRICE                                            
+---------- --------- ---------------                                            
+REL        01-MAY-23          2450.5                                            
+HDFC       01-MAY-23          1670.6                                            
+HUL        01-MAY-23            2350                                            
+LT         01-MAY-23          2380.4                                            
+INFY       01-MAY-23         1260.75                                            
+
+SQL> select * from historical_data;
+
+STOCK_SYMB DAY       OPENING_PRICE CLOSING_PRICE                                
+---------- --------- ------------- -------------                                
+REL        28-APR-23       2381.75        2423.9                                
+HDFC       28-APR-23          1670          1691                                
+HUL        28-APR-23          2419        2467.8                                
+LT         28-APR-23        2312.3          2369                                
+INFY       28-APR-23       1244.95          1259                                
+
+SQL> select * from user_account;
+
+USERNAME             PASSWORD             PHONE_NUMBER                          
+-------------------- -------------------- ------------                          
+Anurag               trader1                8919552106                          
+prudhvi              trader2                6309825346                          
+anish                trader3                6303749658                          
+shruthi              trader4                9876598328                          
+shriya               trader5                9875668768                          
+
+SQL> select * from watchlist;
+
+STOCK_SYMB USER_ID                                                              
+---------- --------------------                                                 
+REL        Anurag                                                               
+HDFC       Anurag                                                               
+HUL        Anurag                                                               
+LT         Anish                                                                
+INFY       Anish                                                                
+
+SQL> spool off
